@@ -7,3 +7,18 @@
     color: #000000;
     display: none;
 }
+
+
+/* Media Query */
+@media (max-width: 576px) {
+    .slider-container {
+        margin-top: -32px;
+    }
+}
+
+@media (min-width: 577px) and (max-width: 1200px) {
+    .slider-container {
+        margin-top: -40px;
+    }
+
+}

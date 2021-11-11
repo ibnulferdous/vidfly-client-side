@@ -1,4 +1,4 @@
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
 import { useEffect, useState } from "react";
 import initializeFirebase from "../firebase/firebase.init";
 
@@ -12,12 +12,43 @@ const useFirebase = () => {
     const auth = getAuth();
 
     // Registration with email and password
-    const registerWithEmail = (email, password, location, history) => {
+    const registerWithEmail = (email, password, name, history) => {
         setIsLoading(true);
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                // const destination = location?.state?.from || '/';
-                // history.replace(destination);
+                const newUser = { email, displayName: name };
+                setUser(newUser);
+
+                // Send name to firebase
+                updateProfile(auth.currentUser, {
+                    displayName: name
+                }).then(() => {
+                    // Profile updated!
+                }).catch((error) => {
+                    // An error occurred
+                    // ...
+                });
+
+                // Sending user data to database
+                const userData = {
+                    name,
+                    email,
+                    role: "user"
+                }
+
+                fetch(`http://localhost:5000/users`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(userData)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                    });
+
+                history.push('/');
                 setAuthError('');
             })
             .catch((error) => {
@@ -29,12 +60,12 @@ const useFirebase = () => {
     }
 
     // Log in with email and password
-    const logInWithEmail = (email, password ) => {
+    const logInWithEmail = (email, password, location, history ) => {
         setIsLoading(true);
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                // const destination = location?.state?.from || '/';
-                // history.replace(destination);
+                const destination = location?.state?.from || '/';
+                history.push(destination);
                 setAuthError('');
             })
             .catch((error) => {

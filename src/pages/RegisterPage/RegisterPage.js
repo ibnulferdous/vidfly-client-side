@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 
 const RegisterPage = () => {
     const [ passwordMessage, setPasswordMessage ] = useState("");
-    const [ authMessage, setAuthMessage ] = useState("");
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { registerWithEmail, isLoading, authError } = useAuth();
 
-    const logInForm = (data) => {
-        console.log(data.password.length);
+    const history = useHistory();
+
+    const registrationForm = (data) => {
 
         if (data.password === data.reTypePassword && data.password.length >= 6) {
             setPasswordMessage("");
-            registerWithEmail(data.email, data.password);
+            registerWithEmail(data.email, data.password, data.fullName, history);            
         } else if (data.password.length < 6) {
             const message = <div className="alert alert-danger mt-3" role="alert">
                 Password must be 6 characters long!
@@ -32,11 +32,11 @@ const RegisterPage = () => {
     return (
         <div>
             <div className="container">
-                <div className="row justify-content-center align-items-center screen-height">
-                    <div className="col-md-6 col-lg-5 bg-white border-bottom border-dark border-5 p-7">
+                <div className="row justify-content-center align-items-center screen-height px-2 px-md-0">
+                    <div className="col-md-6 col-lg-5 bg-white border-bottom border-dark border-5 form-padding">
                         <h2 className="h1 fw-800 text-capitalize text-center mb-5">Register</h2>
                         {
-                            !isLoading && <form onSubmit={handleSubmit(logInForm)}>
+                            !isLoading && <form onSubmit={handleSubmit(registrationForm)}>
                                 <div className="my-4">
                                     <input
                                         placeholder="Full Name"

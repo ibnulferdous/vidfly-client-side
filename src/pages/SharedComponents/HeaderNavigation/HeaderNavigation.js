@@ -37,7 +37,10 @@ const HeaderNavigation = () => {
                     <Nav>
                         {
                             user && 
-                            <Nav.Link href="#deets" className="text-dark fw-500">More deets</Nav.Link>
+                            <Nav.Link 
+                                href="#deets" 
+                                className="text-dark fw-500"
+                            >{user.displayName ? user.displayName : user.email ? user.email : "Unknown"}</Nav.Link>
                         }
                         {
                             user ? 

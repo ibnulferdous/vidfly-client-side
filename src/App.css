@@ -87,12 +87,18 @@
     padding-bottom: 75px;
 }
 
+.form-padding {
+    padding: 100px;
+}
+
+
+
+/* Others */
 .w-50px {
     width: 100%;
     max-width: 50px;
 }
 
-/* Others */
 .z-index-1 {
     z-index: 1;
 }
@@ -123,3 +129,24 @@
     color: #000000;
     border: 2px solid #000000;
 }
+
+
+
+
+
+/* ------------------------------------------------------ */
+/*                        Media Query                     */
+/* ------------------------------------------------------ */
+
+@media (max-width: 576px) {
+    .form-padding {
+        padding: 50px 10px;
+    }
+}
+
+@media (min-width: 577px) and (max-width: 1200px) {
+
+
+}
+
+

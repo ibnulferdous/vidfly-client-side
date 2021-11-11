@@ -1,9 +1,10 @@
+import { render } from '@testing-library/react';
 import React from 'react';
 import Slider from 'react-slick';
 import './HeroSection.css';
 
 const HeroSection = () => {
-    const settings = {
+    let settings = {
         dots: true,
         lazyLoad: true,
         infinite: true,
@@ -13,6 +14,10 @@ const HeroSection = () => {
         slidesToScroll: 1,
         initialSlide: 2
     };
+
+
+    
+    
 
 
     return (
@@ -26,7 +31,7 @@ const HeroSection = () => {
                     </div>
                     <div className="w-100"></div>
                     <div className="col slider-container">
-                        <Slider {...settings}>
+                        <Slider {...settings} className="d-none d-lg-block">
                             <div>
                                 <img src="https://i.postimg.cc/Bvs8ZXFj/slider-3.jpg" alt="slider" />
                             </div>
@@ -40,6 +45,7 @@ const HeroSection = () => {
                                 <img src="https://i.postimg.cc/xTqYHHHw/slider-6.jpg" alt="slider" />
                             </div>
                         </Slider>
+                        <img src="https://i.postimg.cc/Xq9kpJ8p/hero-drone-1.jpg" alt="drone" className="img-fluid d-block d-lg-none" />
                     </div>
                 </div>
             </div>

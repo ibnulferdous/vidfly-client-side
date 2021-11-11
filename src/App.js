@@ -1,23 +1,50 @@
-import logo from './logo.svg';
 import './App.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
+import AllDronesPage from './pages/AllDronesPage/AllDronesPage';
+import HomePage from './pages/HomePage/HomePage';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
+import UserDashboardPage from './pages/UserDashboardPage/UserDashboardPage';
+import AdminDashboardPage from './pages/AdminDashboardPage/AdminDashboardPage';
+import HeaderNavigation from './pages/SharedComponents/HeaderNavigation/HeaderNavigation';
+import LoginPage from './pages/LoginPage/LoginPage';
+import RegisterPage from './pages/RegisterPage/RegisterPage';
+import AuthProvider from './contexts/AuthProvider/AuthProvider';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App min-vh-100">
+      <AuthProvider>
+        <Router>
+          <HeaderNavigation></HeaderNavigation>
+          <Switch>
+            <Route path="/explore-all-products">
+              <AllDronesPage></AllDronesPage>
+            </Route>
+            <Route path="/user-dashboard">
+              <UserDashboardPage></UserDashboardPage>
+            </Route>
+            <Route path="/admin-dashboard">
+              <AdminDashboardPage></AdminDashboardPage>
+            </Route>
+            <Route path="/log-in">
+              <LoginPage></LoginPage>
+            </Route>
+            <Route path="/register">
+              <RegisterPage></RegisterPage>
+            </Route>
+            <Route exact path="/">
+              <HomePage></HomePage>
+            </Route>
+            <Route path="*">
+              <NotFoundPage></NotFoundPage>
+            </Route>
+          </Switch>
+        </Router>
+      </AuthProvider>
     </div>
   );
 }

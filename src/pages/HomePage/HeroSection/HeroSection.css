@@ -1,0 +1,9 @@
+.slider-container {
+    margin-top: -55px;
+}
+
+.slider-container .slick-next:before,
+.slider-container .slick-prev:before {
+    color: #000000;
+    display: none;
+}

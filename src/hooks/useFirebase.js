@@ -31,8 +31,10 @@ const useFirebase = () => {
 
                 // Sending user data to database
                 const userData = {
+                    uid: "",
                     name,
                     email,
+                    photoURL: "",
                     role: "user"
                 }
 

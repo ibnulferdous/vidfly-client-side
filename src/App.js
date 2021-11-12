@@ -14,6 +14,7 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
 import AuthProvider from './contexts/AuthProvider/AuthProvider';
 import PrivateRoute from './pages/PrivateRoute/PrivateRoute';
+import AddProductPage from './pages/AddProductPage/AddProductPage';
 
 function App() {
   return (
@@ -22,8 +23,11 @@ function App() {
         <Router>
           <HeaderNavigation></HeaderNavigation>
           <Switch>
-            <PrivateRoute path="/explore-all-products">
+            <Route path="/explore-all-products">
               <AllDronesPage></AllDronesPage>
+            </Route>
+            <PrivateRoute path="/add-product">
+              <AddProductPage></AddProductPage>
             </PrivateRoute>
             <Route path="/user-dashboard">
               <UserDashboardPage></UserDashboardPage>

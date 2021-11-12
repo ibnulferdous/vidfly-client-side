@@ -1,4 +1,5 @@
 import React from 'react';
+import DronesSection from './DronesSection/DronesSection';
 import FeaturesSection from './FeaturesSection/FeaturesSection';
 import HeroSection from './HeroSection/HeroSection';
 
@@ -7,6 +8,7 @@ const HomePage = () => {
         <>
             <HeroSection></HeroSection>
             <FeaturesSection></FeaturesSection>
+            <DronesSection></DronesSection>
         </>
     );
 };

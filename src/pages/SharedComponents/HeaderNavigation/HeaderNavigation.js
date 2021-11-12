@@ -25,6 +25,7 @@ const HeaderNavigation = () => {
                         <Nav.Link as={Link} to="/" className="text-dark fw-500">Home</Nav.Link>
                         <Nav.Link as={Link} to="/explore-all-products" className="text-dark fw-500">Explore</Nav.Link>
                         <Nav.Link as={Link} to="/user-dashboard" className="text-dark fw-500">User</Nav.Link>
+                        <Nav.Link as={Link} to="/add-product" className="text-dark fw-500">Add Product</Nav.Link>
 
                         <NavDropdown title="Admin" id="collasible-nav-dropdown" className="text-dark fw-500">
                             <NavDropdown.Item href="#action/3.1" className="text-dark fw-500">Action</NavDropdown.Item>

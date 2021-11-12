@@ -1,4 +1,3 @@
-import { render } from '@testing-library/react';
 import React from 'react';
 import Slider from 'react-slick';
 import './HeroSection.css';

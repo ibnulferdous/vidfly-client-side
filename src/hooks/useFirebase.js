@@ -31,10 +31,8 @@ const useFirebase = () => {
 
                 // Sending user data to database
                 const userData = {
-                    uid: "",
                     name,
                     email,
-                    photoURL: "",
                     role: "user"
                 }
 
@@ -47,7 +45,7 @@ const useFirebase = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        console.log(data);
+                        
                     });
 
                 history.push('/');
@@ -82,6 +80,7 @@ const useFirebase = () => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUser(user);
+                
             } else {
                 setUser(null);
             }
@@ -90,6 +89,8 @@ const useFirebase = () => {
 
         return () => unsubscribe;
     }, []);
+
+
 
     // Log out
     const logOut = () => {

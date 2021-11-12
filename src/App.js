@@ -4,7 +4,6 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import AllDronesPage from './pages/AllDronesPage/AllDronesPage';
 import HomePage from './pages/HomePage/HomePage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import UserDashboardPage from './pages/UserDashboardPage/UserDashboardPage';
@@ -15,6 +14,8 @@ import RegisterPage from './pages/RegisterPage/RegisterPage';
 import AuthProvider from './contexts/AuthProvider/AuthProvider';
 import PrivateRoute from './pages/PrivateRoute/PrivateRoute';
 import AddProductPage from './pages/AddProductPage/AddProductPage';
+import ExploreAllPage from './pages/ExploreAllPage/ExploreAllPage';
+import PurchasePage from './pages/PurchasePage/PurchasePage';
 
 function App() {
   return (
@@ -24,17 +25,20 @@ function App() {
           <HeaderNavigation></HeaderNavigation>
           <Switch>
             <Route path="/explore-all-products">
-              <AllDronesPage></AllDronesPage>
+              <ExploreAllPage></ExploreAllPage>
             </Route>
+            <PrivateRoute path="/purchase/:productID">
+              <PurchasePage></PurchasePage>
+            </PrivateRoute>
             <PrivateRoute path="/add-product">
               <AddProductPage></AddProductPage>
             </PrivateRoute>
-            <Route path="/user-dashboard">
+            <PrivateRoute path="/user-dashboard">
               <UserDashboardPage></UserDashboardPage>
-            </Route>
-            <Route path="/admin-dashboard">
+            </PrivateRoute>
+            <PrivateRoute path="/admin-dashboard">
               <AdminDashboardPage></AdminDashboardPage>
-            </Route>
+            </PrivateRoute>
             <Route path="/log-in">
               <LoginPage></LoginPage>
             </Route>

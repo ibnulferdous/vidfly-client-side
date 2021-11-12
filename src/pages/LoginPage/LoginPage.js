@@ -5,7 +5,7 @@ import useAuth from '../../hooks/useAuth';
 
 const LoginPage = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { user, logInWithEmail, isLoading, authError } = useAuth();
+    const { logInWithEmail, isLoading, authError } = useAuth();
 
     const location = useLocation();
     const history = useHistory();
@@ -13,8 +13,6 @@ const LoginPage = () => {
     const logInForm = (data) => {
         logInWithEmail(data.email, data.password, location, history);
     };
-
-    console.log(user);
 
 
     return (

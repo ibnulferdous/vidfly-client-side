@@ -91,6 +91,10 @@
     padding: 100px;
 }
 
+.p-small-box {
+    padding: 75px;
+}
+
 
 
 /* Others */
@@ -139,6 +143,11 @@
 /* ------------------------------------------------------ */
 
 @media (max-width: 576px) {
+
+    .p-small-box {
+        padding: 50px 10px;
+    }
+
     .form-padding {
         padding: 50px 10px;
     }

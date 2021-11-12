@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const DroneCard = (props) => {
+const ExploreCard = (props) => {
 
     const { productName, flightDistance, flyingTime, photoResolution, photoUrl, price, videoResolution, _id } = props.drone;
 
@@ -33,7 +33,7 @@ const DroneCard = (props) => {
                     </div>
 
                     <h4 className="h4 fw-700 text-center my-5">Price: ${price}</h4>
-                    
+
                     <Link to={`/purchase/${_id}`} className="text-decoration-none">
                         <button className="d-block mb-5 mx-auto vf-button-dark">Purchase</button>
                     </Link>
@@ -43,4 +43,4 @@ const DroneCard = (props) => {
     );
 };
 
-export default DroneCard;
+export default ExploreCard;

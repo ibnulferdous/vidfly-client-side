@@ -6,39 +6,93 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import useAuth from '../../hooks/useAuth';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    useParams,
+    useRouteMatch
+} from "react-router-dom";
+import MyOrders from './MyOrders/MyOrders';
+import UserReview from './UserReview/UserReview';
+import Pay from './Pay/Pay';
 
 const drawerWidth = 240;
 
 function UserDashboardPage(props) {
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
+    const { logOut } = useAuth();
+    let { path, url } = useRouteMatch();
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
 
     const drawer = (
-        <div>
-            <Toolbar />
+        <div className="raleway">
+            <Toolbar/>
             <Divider />
             <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>
-                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                <Link to={`${url}`} className="text-decoration-none">
+                    <ListItem button>
+                        <ListItemIcon sx={{ color: '#000000' }}>
+                            <i className="fas fa-cart-arrow-down"></i>
                         </ListItemIcon>
-                        <ListItemText primary={text} />
+                        <span className="text-decoration-none text-dark fw-500">My Orders</span>
                     </ListItem>
-                ))}
+                </Link>
+                <Link to={`${url}/review`} className="text-decoration-none">
+                    <ListItem button>
+                        <ListItemIcon sx={{ color: '#000000' }}>
+                            <i className="fas fa-medal"></i>
+                        </ListItemIcon>
+                        <span className="text-decoration-none text-dark fw-500">Review</span>
+                    </ListItem>
+                </Link>
+                <Link to={`${url}/payment`} className="text-decoration-none">
+                    <ListItem button>
+                        <ListItemIcon sx={{ color: '#000000' }}>
+                            <i className="fas fa-money-check"></i>
+                        </ListItemIcon>
+                        <span className="text-dark fw-500">Pay now</span>
+                    </ListItem>
+                </Link>
+            </List>
+            <Divider />
+            <List>
+                <Link to="/" className="text-decoration-none">
+                    <ListItem button>
+                        <ListItemIcon sx={{ color: '#000000' }}>
+                            <i className="fas fa-home"></i>
+                        </ListItemIcon >
+                        <span className="text-dark fw-500">Home</span>
+                    </ListItem>
+                </Link>
+                <Link to="/explore-all-products" className="text-decoration-none">
+                    <ListItem button>
+                        <ListItemIcon sx={{ color: '#000000' }}>
+                            <i className="fas fa-cubes"></i>
+                        </ListItemIcon>
+                        <span className="text-dark fw-500">Explore</span>
+                    </ListItem>
+                </Link>
+                <span onClick={logOut} className="text-decoration-none text-dark">
+                    <ListItem button>
+                        <ListItemIcon sx={{ color: '#000000' }}>
+                            <i className="fas fa-sign-out-alt"></i>
+                        </ListItemIcon>
+                        <span className="text-dark fw-500">Log out</span>
+                    </ListItem>
+                </span>
             </List>
         </div>
     );
@@ -46,16 +100,17 @@ function UserDashboardPage(props) {
     const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ display: 'flex' }} className="raleway">
             <CssBaseline />
             <AppBar
                 position="fixed"
                 sx={{
                     width: { sm: `calc(100% - ${drawerWidth}px)` },
                     ml: { sm: `${drawerWidth}px` },
+                    background: '#F5F6F7'
                 }}
             >
-                <Toolbar>
+                <Toolbar sx={{ background: '#000' }}>
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
@@ -66,7 +121,7 @@ function UserDashboardPage(props) {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap component="div">
-                        User Dashboard
+                        <span className="raleway">User Dashboard</span>
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -104,12 +159,20 @@ function UserDashboardPage(props) {
             </Box>
             <Box
                 component="main"
-                sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
+                sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)`, background: '#F5F6F7' } }}
             >
                 <Toolbar />
-                <Typography paragraph>
-                    Content
-                </Typography>
+                <Switch>
+                    <Route exact path={path}>
+                        <MyOrders></MyOrders>
+                    </Route>
+                    <Route path={`${path}/review`}>
+                        <UserReview></UserReview>
+                    </Route>
+                    <Route path={`${path}/payment`}>
+                        <Pay></Pay>
+                    </Route>
+                </Switch>
             </Box>
         </Box>
     );

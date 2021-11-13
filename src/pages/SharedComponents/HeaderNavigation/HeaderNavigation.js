@@ -24,16 +24,24 @@ const HeaderNavigation = () => {
                     <Nav className="mx-auto">
                         <Nav.Link as={Link} to="/" className="text-dark fw-500">Home</Nav.Link>
                         <Nav.Link as={Link} to="/explore-all-products" className="text-dark fw-500">Explore</Nav.Link>
-                        <Nav.Link as={Link} to="/user-dashboard" className="text-dark fw-500">User</Nav.Link>
-                        <Nav.Link as={Link} to="/add-product" className="text-dark fw-500">Add Product</Nav.Link>
-
-                        <NavDropdown title="Admin" id="collasible-nav-dropdown" className="text-dark fw-500">
-                            <NavDropdown.Item href="#action/3.1" className="text-dark fw-500">Action</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2" className="text-dark fw-500">Another action</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3" className="text-dark fw-500">Something</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4" className="text-dark fw-500">Separated link</NavDropdown.Item>
-                        </NavDropdown>
+                        {
+                            user && 
+                            <Nav.Link as={Link} to="/user-dashboard" className="text-dark fw-500">Dashboard</Nav.Link>
+                        }
+                        {
+                            user && 
+                            <Nav.Link as={Link} to="/add-product" className="text-dark fw-500">Add Product</Nav.Link>
+                        }
+                        {
+                            user && 
+                            <NavDropdown title="Admin" id="collasible-nav-dropdown" className="text-dark fw-500">
+                                <NavDropdown.Item href="#action/3.1" className="text-dark fw-500">Action</NavDropdown.Item>
+                                <NavDropdown.Item href="#action/3.2" className="text-dark fw-500">Another action</NavDropdown.Item>
+                                <NavDropdown.Item href="#action/3.3" className="text-dark fw-500">Something</NavDropdown.Item>
+                                <NavDropdown.Divider />
+                                <NavDropdown.Item href="#action/3.4" className="text-dark fw-500">Separated link</NavDropdown.Item>
+                            </NavDropdown>
+                        }
                     </Nav>
                     <Nav>
                         {
@@ -45,7 +53,7 @@ const HeaderNavigation = () => {
                         }
                         {
                             user ? 
-                                <Nav.Link onClick={logOut} to="/log-in" className="text-dark fw-500">Log out</Nav.Link>
+                                <Nav.Link onClick={logOut} className="text-dark fw-500">Log out</Nav.Link>
                             :
                                 <Nav.Link as={Link} to="/log-in" className="text-dark fw-500">Log in</Nav.Link>
                         }

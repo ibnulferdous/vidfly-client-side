@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import HeaderNavigation from '../SharedComponents/HeaderNavigation/HeaderNavigation';
 
 const AddProductPage = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
@@ -26,6 +27,7 @@ const AddProductPage = () => {
 
     return (
         <div>
+            <HeaderNavigation></HeaderNavigation>
             <div className="container">
                 <div className="row justify-content-center align-items-center screen-height px-2 px-md-0">
                     <div className="col-md-8 col-lg-7 bg-white border-bottom border-dark border-5 my-7 form-padding">

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router';
 import useAuth from '../../hooks/useAuth';
+import HeaderNavigation from '../SharedComponents/HeaderNavigation/HeaderNavigation';
 
 const PurchasePage = () => {
     const { productID } = useParams();
@@ -24,6 +25,8 @@ const PurchasePage = () => {
         data.name = user.displayName;
         data.email = user.email;
         data.uid = user.uid;
+        data.purchaseDate = new Date().toLocaleDateString();
+        data.purchaseTime = new Date().toLocaleTimeString();
         data.orderStatus = "pending";
         
         fetch(`http://localhost:5000/orders`, {
@@ -45,6 +48,7 @@ const PurchasePage = () => {
 
     return (
         <div>
+            <HeaderNavigation></HeaderNavigation>
             <header>
                 <div className="container my-7">
                     <div className="row">

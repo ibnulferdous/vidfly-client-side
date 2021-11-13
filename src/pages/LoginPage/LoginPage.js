@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
+import HeaderNavigation from '../SharedComponents/HeaderNavigation/HeaderNavigation';
 
 const LoginPage = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -17,6 +18,7 @@ const LoginPage = () => {
 
     return (
         <div>
+            <HeaderNavigation></HeaderNavigation>
             <div className="container">
                 <div className="row justify-content-center align-items-center screen-height px-2 px-md-0">
                     <div className="col-md-6 col-lg-5 bg-white border-bottom border-dark border-5 form-padding">

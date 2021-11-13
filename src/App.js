@@ -8,7 +8,6 @@ import HomePage from './pages/HomePage/HomePage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import UserDashboardPage from './pages/UserDashboardPage/UserDashboardPage';
 import AdminDashboardPage from './pages/AdminDashboardPage/AdminDashboardPage';
-import HeaderNavigation from './pages/SharedComponents/HeaderNavigation/HeaderNavigation';
 import LoginPage from './pages/LoginPage/LoginPage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
 import AuthProvider from './contexts/AuthProvider/AuthProvider';
@@ -22,7 +21,6 @@ function App() {
     <div className="App min-vh-100">
       <AuthProvider>
         <Router>
-          <HeaderNavigation></HeaderNavigation>
           <Switch>
             <Route path="/explore-all-products">
               <ExploreAllPage></ExploreAllPage>

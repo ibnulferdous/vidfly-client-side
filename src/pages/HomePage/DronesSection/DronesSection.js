@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import DroneCard from './DroneCard/DroneCard';
 
 const DronesSection = () => {
@@ -26,6 +27,13 @@ const DronesSection = () => {
                     {
                         drones.slice(0, 6).map(drone => <DroneCard key={drone._id} drone={drone}></DroneCard> )
                     }                    
+                </div>
+                <div className="row">
+                    <div className="col">
+                        <Link to="/explore-all-products" className="text-decoration-none">
+                            <button className="d-block mt-5 mb-lg-5 mx-auto vf-button-dark">All Products</button>
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>

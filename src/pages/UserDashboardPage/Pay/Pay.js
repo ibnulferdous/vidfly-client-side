@@ -3,7 +3,7 @@ import React from 'react';
 const Pay = () => {
     return (
         <div>
-            <div className="container-fluid">
+            <div className="container">
                 <div className="row my-5">
                     <div className="col">
                         <h1 className="text-capitalize text-center mb-5">Payment system coming soon!</h1>

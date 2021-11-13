@@ -14,11 +14,9 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import useAuth from '../../hooks/useAuth';
 import {
-    BrowserRouter as Router,
     Switch,
     Route,
     Link,
-    useParams,
     useRouteMatch
 } from "react-router-dom";
 import MyOrders from './MyOrders/MyOrders';
@@ -88,7 +86,7 @@ function UserDashboardPage(props) {
                 <span onClick={logOut} className="text-decoration-none text-dark">
                     <ListItem button>
                         <ListItemIcon sx={{ color: '#000000' }}>
-                            <i className="fas fa-sign-out-alt"></i>
+                            <i className="fas fa-power-off"></i>
                         </ListItemIcon>
                         <span className="text-dark fw-500">Log out</span>
                     </ListItem>

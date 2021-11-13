@@ -6,7 +6,6 @@ const MyOrders = () => {
     const [userOrders, setUserOrders] = useState([]);
     const { user } = useAuth();
     const userEmail = [user.email];
-    const userName = [user.displayName];
 
     useEffect(() => {
         if (userEmail) {
@@ -28,17 +27,21 @@ const MyOrders = () => {
 
     // Cancel order button event
     const handleCancel = (id) => {
-        fetch(`http://localhost:5000/orders/${id}`, {
-            method: 'DELETE'
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.deletedCount) {
-                    alert("Cancled booking successfully!");
-                    const remainingBookings = userOrders.filter(order => order._id !== id);
-                    setUserOrders(remainingBookings);
-                }
+        const response = window.confirm('Do you want to cancel the order?')
+
+        if (response) {
+            fetch(`http://localhost:5000/orders/${id}`, {
+                method: 'DELETE'
             })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount) {
+                        alert("Cancled order successfully!");
+                        const remainingUserOrders = userOrders.filter(order => order._id !== id);
+                        setUserOrders(remainingUserOrders);
+                    }
+                })
+        }
     }
 
 

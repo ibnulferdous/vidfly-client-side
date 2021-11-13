@@ -12,7 +12,6 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
 import AuthProvider from './contexts/AuthProvider/AuthProvider';
 import PrivateRoute from './pages/PrivateRoute/PrivateRoute';
-import AddProductPage from './pages/AddProductPage/AddProductPage';
 import ExploreAllPage from './pages/ExploreAllPage/ExploreAllPage';
 import PurchasePage from './pages/PurchasePage/PurchasePage';
 
@@ -27,9 +26,6 @@ function App() {
             </Route>
             <PrivateRoute path="/purchase/:productID">
               <PurchasePage></PurchasePage>
-            </PrivateRoute>
-            <PrivateRoute path="/add-product">
-              <AddProductPage></AddProductPage>
             </PrivateRoute>
             <PrivateRoute path="/user-dashboard">
               <UserDashboardPage></UserDashboardPage>

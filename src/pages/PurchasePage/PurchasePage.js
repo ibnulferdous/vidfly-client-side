@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router';
 import useAuth from '../../hooks/useAuth';
+import Footer from '../SharedComponents/Footer/Footer';
 import HeaderNavigation from '../SharedComponents/HeaderNavigation/HeaderNavigation';
+import TutorialsSection from '../SharedComponents/TutorialsSection/TutorialsSection';
 
 const PurchasePage = () => {
     const { productID } = useParams();
@@ -195,6 +197,9 @@ const PurchasePage = () => {
                     </div>
                 </div>                
             </section>
+
+            <TutorialsSection></TutorialsSection>
+            <Footer></Footer>
         </div>
     );
 };

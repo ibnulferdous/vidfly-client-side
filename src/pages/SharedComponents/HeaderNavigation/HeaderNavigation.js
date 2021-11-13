@@ -1,11 +1,41 @@
-import React from 'react';
-import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Container, Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import './HeaderNavigation.css';
 
 const HeaderNavigation = () => {
     const { user, logOut } = useAuth();
+    const [dbUser, setDbUser] = useState([]);
+    const [isAdmin, setIsAdmin] = useState(false);
+    const userEmail = [user?.email];
+
+    useEffect(() => {
+        if (userEmail) {
+            fetch('http://localhost:5000/users/by-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userEmail)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    setDbUser(data);
+                })
+        }
+
+    }, [user]);
+
+    useEffect( () => {
+        if (dbUser[0]) {
+            if (dbUser[0].role === "admin") {
+                setIsAdmin(true);
+            } else {
+                setIsAdmin(false);
+            }
+        }
+    }, [dbUser]);
 
     return (
         <Navbar collapseOnSelect expand="lg" variant="light">
@@ -25,22 +55,12 @@ const HeaderNavigation = () => {
                         <Nav.Link as={Link} to="/" className="text-dark fw-500">Home</Nav.Link>
                         <Nav.Link as={Link} to="/explore-all-products" className="text-dark fw-500">Explore</Nav.Link>
                         {
-                            user && 
+                            !user ? '' : !isAdmin && 
                             <Nav.Link as={Link} to="/user-dashboard" className="text-dark fw-500">Dashboard</Nav.Link>
                         }
                         {
-                            user && 
-                            <Nav.Link as={Link} to="/add-product" className="text-dark fw-500">Add Product</Nav.Link>
-                        }
-                        {
-                            user && 
-                            <NavDropdown title="Admin" id="collasible-nav-dropdown" className="text-dark fw-500">
-                                <NavDropdown.Item href="#action/3.1" className="text-dark fw-500">Action</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.2" className="text-dark fw-500">Another action</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.3" className="text-dark fw-500">Something</NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item href="#action/3.4" className="text-dark fw-500">Separated link</NavDropdown.Item>
-                            </NavDropdown>
+                            !user ? '' : isAdmin &&
+                            <Nav.Link as={Link} to="/admin-dashboard" className="text-dark fw-500">Admin DashBoard</Nav.Link>
                         }
                     </Nav>
                     <Nav>

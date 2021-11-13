@@ -1,14 +1,12 @@
 import axios from 'axios';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import HeaderNavigation from '../SharedComponents/HeaderNavigation/HeaderNavigation';
 
-const AddProductPage = () => {
+const AddProductAdmin = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
 
     const addProductForm = (data) => {
-        console.log(data);
 
         axios.post('http://localhost:5000/drones', data)
             .then(res => {
@@ -24,12 +22,10 @@ const AddProductPage = () => {
 
 
 
-
     return (
         <div>
-            <HeaderNavigation></HeaderNavigation>
             <div className="container">
-                <div className="row justify-content-center align-items-center screen-height px-2 px-md-0">
+                <div className="row justify-content-center align-items-center screen-height px-0 px-md-0">
                     <div className="col-md-8 col-lg-7 bg-white border-bottom border-dark border-5 my-7 form-padding">
                         <h2 className="h1 fw-800 text-capitalize text-center mb-5">Add a new product</h2>
                         <form onSubmit={handleSubmit(addProductForm)}>
@@ -140,7 +136,7 @@ const AddProductPage = () => {
                                 />
                                 {errors.flightDistance && errors.flightDistance.type === "required" && <p className="error-message">This field is required</p>}
                             </div>
-                            
+
                             <div className="my-4">
                                 <label htmlFor="flyingTime">Flying Time:</label>
                                 <input
@@ -164,7 +160,7 @@ const AddProductPage = () => {
                                 />
                                 {errors.photoUrl && errors.photoUrl.type === "required" && <p className="error-message">This field is required</p>}
                             </div>
-                
+
                             <input type="submit" className="d-block mt-4 mx-auto vf-button-dark" value="Add Product" />
                         </form>
                     </div>
@@ -174,4 +170,4 @@ const AddProductPage = () => {
     );
 };
 
-export default AddProductPage;
+export default AddProductAdmin;

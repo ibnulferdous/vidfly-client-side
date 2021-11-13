@@ -5,14 +5,14 @@ const AllUsersAdmin = () => {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/users')
+        fetch('https://immense-atoll-58218.herokuapp.com/users')
             .then(res => res.json())
             .then(data => setUsers(data));
     }, []);
 
     // Handle user status
     const handleUserStatus = (id) => {
-        const url = `http://localhost:5000/users/${id}`;
+        const url = `https://immense-atoll-58218.herokuapp.com/users/${id}`;
         const data = { orderStatus: "admin" };
 
         fetch(url, {
@@ -27,7 +27,7 @@ const AllUsersAdmin = () => {
                 if (data.modifiedCount) {
                     alert("Approved successfully!");
 
-                    fetch('http://localhost:5000/orders/')
+                    fetch('https://immense-atoll-58218.herokuapp.com/orders')
                         .then(res => res.json())
                         .then(data => setUsers(data));
                 }

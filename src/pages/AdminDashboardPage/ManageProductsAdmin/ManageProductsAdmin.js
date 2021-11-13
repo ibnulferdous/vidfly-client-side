@@ -5,7 +5,7 @@ const ManageProductsAdmin = () => {
     const [drones, setDrones] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/drones')
+        fetch('https://immense-atoll-58218.herokuapp.com/drones')
             .then(res => res.json())
             .then(data => setDrones(data));
     }, []);
@@ -16,7 +16,7 @@ const ManageProductsAdmin = () => {
         const response = window.confirm('Do you want to delete the product?')
 
         if (response) {
-            fetch(`http://localhost:5000/drones/${id}`, {
+            fetch(`https://immense-atoll-58218.herokuapp.com/drones/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

@@ -12,7 +12,7 @@ const HeaderNavigation = () => {
 
     useEffect(() => {
         if (userEmail) {
-            fetch('http://localhost:5000/users/by-email', {
+            fetch('https://immense-atoll-58218.herokuapp.com/users/by-email', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

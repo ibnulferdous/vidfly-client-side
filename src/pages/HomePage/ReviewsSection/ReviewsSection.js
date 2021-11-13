@@ -7,7 +7,7 @@ const ReviewsSection = () => {
     const [reviews, setReviews] = React.useState([]);
 
     React.useEffect(() => {
-        fetch('http://localhost:5000/reviews')
+        fetch('https://immense-atoll-58218.herokuapp.com/reviews')
             .then(res => res.json())
             .then(data => setReviews(data));
     }, []);

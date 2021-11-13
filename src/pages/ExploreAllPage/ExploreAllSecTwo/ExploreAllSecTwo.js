@@ -5,7 +5,7 @@ const ExploreAllSecTwo = () => {
     const [drones, setDrones] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/drones')
+        fetch('https://immense-atoll-58218.herokuapp.com/drones')
             .then(res => res.json())
             .then(data => setDrones(data));
     }, []);

@@ -6,7 +6,7 @@ const AllOrdersAdmin = () => {
 
     // Loading all orders
     useEffect(() => {
-        fetch('http://localhost:5000/orders')
+        fetch('https://immense-atoll-58218.herokuapp.com/orders')
             .then(res => res.json())
             .then(data => setOrders(data));
     }, []);
@@ -14,7 +14,7 @@ const AllOrdersAdmin = () => {
 
     // Handle/update order status
     const handleOrderStatus = (id) => {
-        const url = `http://localhost:5000/orders/${id}`;
+        const url = `https://immense-atoll-58218.herokuapp.com/orders/${id}`;
         const data = { orderStatus: "shipped" };
 
         fetch(url, {
@@ -29,7 +29,7 @@ const AllOrdersAdmin = () => {
                 if (data.modifiedCount) {
                     alert("Approved successfully!");
 
-                    fetch('http://localhost:5000/orders/')
+                    fetch('https://immense-atoll-58218.herokuapp.com/orders')
                         .then(res => res.json())
                         .then(data => setOrders(data));
                 }
@@ -41,7 +41,7 @@ const AllOrdersAdmin = () => {
         const response = window.confirm('Do you want to cancel the order?')
 
         if (response) {
-            fetch(`http://localhost:5000/orders/${id}`, {
+            fetch(`https://immense-atoll-58218.herokuapp.com/orders/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

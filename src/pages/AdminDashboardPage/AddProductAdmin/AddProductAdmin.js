@@ -8,7 +8,7 @@ const AddProductAdmin = () => {
 
     const addProductForm = (data) => {
 
-        axios.post('http://localhost:5000/drones', data)
+        axios.post('https://immense-atoll-58218.herokuapp.com/drones', data)
             .then(res => {
                 if (parseInt(res.data.insertedId) > 0) {
                     alert('Drone added successfully!');

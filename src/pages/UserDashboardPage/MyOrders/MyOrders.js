@@ -9,7 +9,7 @@ const MyOrders = () => {
 
     useEffect(() => {
         if (userEmail) {
-            fetch('http://localhost:5000/orders/by-email', {
+            fetch('https://immense-atoll-58218.herokuapp.com/orders/by-email', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -30,7 +30,7 @@ const MyOrders = () => {
         const response = window.confirm('Do you want to cancel the order?')
 
         if (response) {
-            fetch(`http://localhost:5000/orders/${id}`, {
+            fetch(`https://immense-atoll-58218.herokuapp.com/orders/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

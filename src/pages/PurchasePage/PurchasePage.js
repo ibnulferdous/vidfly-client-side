@@ -15,7 +15,7 @@ const PurchasePage = () => {
 
     // Fetch product data from database
     useEffect(() => {
-        fetch(`http://localhost:5000/drones/${productID}`)
+        fetch(`https://immense-atoll-58218.herokuapp.com/drones/${productID}`)
             .then(res => res.json())
             .then(data => setProductDetails(data));
     }, []);
@@ -31,7 +31,7 @@ const PurchasePage = () => {
         data.purchaseTime = new Date().toLocaleTimeString();
         data.orderStatus = "pending";
         
-        fetch(`http://localhost:5000/orders`, {
+        fetch(`https://immense-atoll-58218.herokuapp.com/orders`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
